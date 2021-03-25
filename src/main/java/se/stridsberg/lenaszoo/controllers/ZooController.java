@@ -31,7 +31,7 @@ public class ZooController {
 
     @RequestMapping("animals")
     public String showAnimals(Model model) {
-        model.addAttribute("animals", animalService.getAnimals());
+        model.addAttribute("animals", animalService.getAllAnimals());
         return "animals";
     }
 
