@@ -1,6 +1,5 @@
 package se.stridsberg.lenaszoo.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import se.stridsberg.lenaszoo.models.dto.AnimalDTO;
 import se.stridsberg.lenaszoo.repository.AnimalRepository;
@@ -17,8 +16,8 @@ public class AnimalDAO {
         this.repository = repository;
     }
 
-    public void addAnimal(AnimalDTO animalDTO) {
-        repository.save(animalDTO);
+    public AnimalDTO addAnimal(AnimalDTO animalDTO) {
+        return repository.save(animalDTO);
     }
 
     public Iterable<AnimalDTO> getAllAnimals() {

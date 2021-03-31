@@ -8,6 +8,7 @@ import se.stridsberg.lenaszoo.models.dto.AnimalDTO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnimalService {
@@ -28,13 +29,29 @@ public class AnimalService {
         return animals;
     }
 
-    public void addAnimal(Animal animal) {
-        animalDAO.addAnimal(mapFromAnimal(animal));
+    public Animal updateAnimal(Animal animal, Integer id) {
+        Animal animalToUpdate = getAnimalById(id);
+
+        if (animalToUpdate != null) {
+            animalToUpdate.setName(animal.getName());
+            animalToUpdate.setType(animal.getType());
+        } else {
+            animalToUpdate.setId(id);
+        }
+        AnimalDTO updatedAnimal = animalDAO.addAnimal(mapFromAnimal(animalToUpdate));
+        return mapToAnimal(updatedAnimal);
+    }
+
+    public Animal addAnimal(Animal animal) {
+        AnimalDTO newAnimalDTO = animalDAO.addAnimal(mapFromAnimal(animal));
+        return mapToAnimal(newAnimalDTO);
     }
 
     public Animal getAnimalById(Integer id) {
-        if (animalDAO.findAnimalByID(id).isPresent()) {
-            return mapToAnimal(animalDAO.findAnimalByID(id).get());
+        Optional<AnimalDTO> maybeAnimal = animalDAO.findAnimalByID(id);
+        if (maybeAnimal.isPresent()) {
+            AnimalDTO animalDTO = maybeAnimal.get();
+            return mapToAnimal(animalDTO);
         }
         return null;
     }
@@ -43,11 +60,11 @@ public class AnimalService {
         animalDAO.deleteAnimal(id);
     }
 
-    private AnimalDTO mapFromAnimal(Animal animal) {
+    public AnimalDTO mapFromAnimal(Animal animal) {
         return new AnimalDTO(animal.getId(), animal.getType(), animal.getName());
     }
 
-    private Animal mapToAnimal(AnimalDTO animalDTO) {
+    public Animal mapToAnimal(AnimalDTO animalDTO) {
         return new Animal(animalDTO.getId(), animalDTO.getType(), animalDTO.getName());
     }
 }
