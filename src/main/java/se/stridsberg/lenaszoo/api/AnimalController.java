@@ -6,7 +6,6 @@ import se.stridsberg.lenaszoo.models.Animal;
 import se.stridsberg.lenaszoo.services.AnimalService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/animals")
@@ -21,9 +20,8 @@ public class AnimalController {
     }
 
     @GetMapping("/{id}")
-    public Animal getAnimalById(@PathVariable("id") UUID id) {
-        return animalService.getAnimalById(id)
-                .orElse(null);
+    public Animal getAnimalById(@PathVariable("id") Integer id) {
+        return animalService.getAnimalById(id);
     }
 
     @PostMapping
@@ -32,7 +30,7 @@ public class AnimalController {
     }
 
     @DeleteMapping("/{id}")
-    public int deleteAnimal(@PathVariable("id") UUID id) {
-        return animalService.deleteAnimal(id);
+    public void deleteAnimal(@PathVariable("id") Integer id) {
+        animalService.deleteAnimal(id);
     }
 }

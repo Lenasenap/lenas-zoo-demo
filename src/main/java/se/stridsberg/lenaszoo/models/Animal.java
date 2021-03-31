@@ -6,12 +6,12 @@ import java.util.UUID;
 
 public class Animal {
 
-    private UUID id;
+    private Integer id;
     private String type;
     private String name;
 
     // TODO Undersök @JsonProperty - bara för att skriva till java eller också tvärtom?
-    public Animal(@JsonProperty("id") UUID id,
+    public Animal(@JsonProperty("id") Integer id,
                   @JsonProperty("type") String type,
                   @JsonProperty("name") String name) {
         this.id = id;
@@ -19,7 +19,7 @@ public class Animal {
         this.name = name;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 

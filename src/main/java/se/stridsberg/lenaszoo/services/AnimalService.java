@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.stridsberg.lenaszoo.dao.AnimalDAO;
 import se.stridsberg.lenaszoo.models.Animal;
+import se.stridsberg.lenaszoo.models.dto.AnimalDTO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class AnimalService {
@@ -20,26 +19,35 @@ public class AnimalService {
         this.animalDAO = animalDAO;
     }
 
-    public List<Animal> getAnimals() {
+    public List<Animal> getAllAnimals() {
         List<Animal> animals = new ArrayList<>();
-        //animals.add(new Animal("Lejon", "Leo"));
-        //animals.add(new Animal("Orm", "Väs"));
+        for (AnimalDTO animalDTO : animalDAO.getAllAnimals()) {
+            Animal animal = mapToAnimal(animalDTO);
+            animals.add(animal);
+        }
         return animals;
     }
 
-    public List<Animal> getAllAnimals() {
-        return animalDAO.getAllAnimals();
-    }
-
     public void addAnimal(Animal animal) {
-        animalDAO.addAnimal(animal);
+        animalDAO.addAnimal(mapFromAnimal(animal));
     }
 
-    public Optional<Animal> getAnimalById(UUID id) {
-        return animalDAO.findAnimalByID(id);
+    public Animal getAnimalById(Integer id) {
+        if (animalDAO.findAnimalByID(id).isPresent()) {
+            return mapToAnimal(animalDAO.findAnimalByID(id).get());
+        }
+        return null;
     }
 
-    public int deleteAnimal(UUID id) {
-        return animalDAO.deleteAnimal(id);
+    public void deleteAnimal(Integer id) {
+        animalDAO.deleteAnimal(id);
+    }
+
+    private AnimalDTO mapFromAnimal(Animal animal) {
+        return new AnimalDTO(animal.getId(), animal.getType(), animal.getName());
+    }
+
+    private Animal mapToAnimal(AnimalDTO animalDTO) {
+        return new Animal(animalDTO.getId(), animalDTO.getType(), animalDTO.getName());
     }
 }
