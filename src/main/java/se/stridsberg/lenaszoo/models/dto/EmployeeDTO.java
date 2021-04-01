@@ -1,19 +1,24 @@
-package se.stridsberg.lenaszoo.models;
+package se.stridsberg.lenaszoo.models.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.*;
 
-public class Employee {
+@Entity
+@Table(name = "employees")
+public class EmployeeDTO {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String role;
 
-    public Employee(@JsonProperty("id") Integer id,
-                    @JsonProperty("name") String name,
-                    @JsonProperty("role") String role) {
+    public EmployeeDTO(Integer id, String name, String role) {
         this.id = id;
         this.name = name;
         this.role = role;
+    }
+
+    public EmployeeDTO() {
     }
 
     public Integer getId() {
