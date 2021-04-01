@@ -17,8 +17,8 @@ public class AnimalDAO {
         this.repository = repository;
     }
 
-    public void addAnimal(AnimalDTO animalDTO) {
-        repository.save(animalDTO);
+    public AnimalDTO addAnimal(AnimalDTO animalDTO) {
+        return repository.save(animalDTO);
     }
 
     public Iterable<AnimalDTO> getAllAnimals() {

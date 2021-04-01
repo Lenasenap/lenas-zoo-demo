@@ -25,12 +25,19 @@ public class AnimalController {
     }
 
     @PostMapping
-    public void addAnimal(@RequestBody Animal animal) {
-        animalService.addAnimal(animal);
+    public Animal addAnimal(@RequestBody Animal animal) {
+        return animalService.addAnimal(animal);
     }
 
     @DeleteMapping("/{id}")
     public void deleteAnimal(@PathVariable("id") Integer id) {
         animalService.deleteAnimal(id);
+    }
+
+    @PutMapping("/{id}")
+    public Animal updateAnimal(@PathVariable("id") Integer id,
+                               @RequestBody Animal newAnimal) {
+        return animalService.updateAnimal(newAnimal, id);
+
     }
 }
