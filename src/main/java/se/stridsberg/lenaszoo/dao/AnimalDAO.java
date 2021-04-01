@@ -31,4 +31,8 @@ public class AnimalDAO {
     public void deleteAnimal(Integer id) {
         repository.deleteById(id);
     }
+
+    public void deleteAllAnimals() {
+        repository.deleteAll();
+    }
 }

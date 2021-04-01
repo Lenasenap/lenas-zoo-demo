@@ -58,13 +58,6 @@
 
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>inline</artifactId>
-            <version>2.20.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>

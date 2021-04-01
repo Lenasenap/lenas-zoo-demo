@@ -60,6 +60,10 @@ public class AnimalService {
         animalDAO.deleteAnimal(id);
     }
 
+    public void deleteAllAnimals() {
+        animalDAO.deleteAllAnimals();
+    }
+
     public AnimalDTO mapFromAnimal(Animal animal) {
         return new AnimalDTO(animal.getId(), animal.getType(), animal.getName());
     }

@@ -20,15 +20,13 @@ import java.util.Optional;
 @ExtendWith(MockitoExtension.class)
 class AnimalServiceTest {
 
-    @Mock
-    public AnimalDAO animalDAO;
+    public static AnimalDAO animalDAO;
     public AnimalService animalService;
     public List<AnimalDTO> allAnimals;
 
     @BeforeAll
     public static void initAll() {
-        // Jag behöver instansiera min mockade klass om jag inte har hämtat in jupiter-dependencyt
-        //animalDAO = Mockito.mock(AnimalDAO.class);
+        animalDAO = Mockito.mock(AnimalDAO.class);
     }
 
     @BeforeEach
