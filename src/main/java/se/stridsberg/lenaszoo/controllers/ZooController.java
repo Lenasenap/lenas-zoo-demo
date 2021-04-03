@@ -37,7 +37,7 @@ public class ZooController {
 
     @RequestMapping("employees")
     public String showEmployees(Model model) {
-        model.addAttribute("employees", employeeService.getEmployees());
+        model.addAttribute("employees", employeeService.getAllEmployees());
         return "employees";
     }
 

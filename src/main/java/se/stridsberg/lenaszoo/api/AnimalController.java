@@ -43,4 +43,16 @@ public class AnimalController {
         return animalService.updateAnimal(newAnimal, id);
 
     }
+
+    @DeleteMapping("/empty-database")
+    public void deleleAllAnimals() {
+        animalService.deleteAllAnimals();
+    }
+
+    @PutMapping("/{id}")
+    public Animal updateAnimal(@RequestBody Animal newAnimal,
+                               @PathVariable("id") Integer id) {
+
+        return animalService.updateAnimal(newAnimal, id);
+    }
 }

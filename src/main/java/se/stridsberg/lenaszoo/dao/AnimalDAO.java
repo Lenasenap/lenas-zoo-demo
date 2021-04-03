@@ -1,6 +1,5 @@
 package se.stridsberg.lenaszoo.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import se.stridsberg.lenaszoo.models.dto.AnimalDTO;
 import se.stridsberg.lenaszoo.repository.AnimalRepository;
@@ -31,5 +30,9 @@ public class AnimalDAO {
 
     public void deleteAnimal(Integer id) {
         repository.deleteById(id);
+    }
+
+    public void deleteAllAnimals() {
+        repository.deleteAll();
     }
 }

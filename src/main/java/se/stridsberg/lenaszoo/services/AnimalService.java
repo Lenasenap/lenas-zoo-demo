@@ -28,6 +28,19 @@ public class AnimalService {
         return animals;
     }
 
+    public Animal updateAnimal(Animal animal, Integer id) {
+        Animal animalToUpdate = getAnimalById(id);
+
+        if (animalToUpdate != null) {
+            animalToUpdate.setName(animal.getName());
+            animalToUpdate.setType(animal.getType());
+        } else {
+            animalToUpdate.setId(id);
+        }
+        AnimalDTO updatedAnimal = animalDAO.addAnimal(mapFromAnimal(animalToUpdate));
+        return mapToAnimal(updatedAnimal);
+    }
+
     public Animal addAnimal(Animal animal) {
         AnimalDTO newAnimalDTO = animalDAO.addAnimal(mapFromAnimal(animal));
         return mapToAnimal(newAnimalDTO);
@@ -44,11 +57,15 @@ public class AnimalService {
         animalDAO.deleteAnimal(id);
     }
 
-    private AnimalDTO mapFromAnimal(Animal animal) {
+    public void deleteAllAnimals() {
+        animalDAO.deleteAllAnimals();
+    }
+
+    public AnimalDTO mapFromAnimal(Animal animal) {
         return new AnimalDTO(animal.getId(), animal.getType(), animal.getName());
     }
 
-    private Animal mapToAnimal(AnimalDTO animalDTO) {
+    public Animal mapToAnimal(AnimalDTO animalDTO) {
         return new Animal(animalDTO.getId(), animalDTO.getType(), animalDTO.getName());
     }
 

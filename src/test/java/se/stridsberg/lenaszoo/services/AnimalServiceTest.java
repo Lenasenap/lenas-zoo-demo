@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import se.stridsberg.lenaszoo.dao.AnimalDAO;
@@ -106,5 +107,8 @@ class AnimalServiceTest {
         Animal actualAnimal = animalService.updateAnimal(newAnimal, 1);
 
         Assertions.assertThat(actualAnimal.getName()).isEqualTo(newAnimal.getName());
+    void deleteAnimal() {
+        animalService.deleteAnimal(1);
+        Mockito.verify(animalDAO, Mockito.times(1)).deleteAnimal(1);
     }
 }
