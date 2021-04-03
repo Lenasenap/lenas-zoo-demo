@@ -11,8 +11,11 @@ import java.util.List;
 @RequestMapping("/api/animals")
 public class AnimalController {
 
-    @Autowired
-    AnimalService animalService;
+    final AnimalService animalService;
+
+    public AnimalController(AnimalService animalService) {
+        this.animalService = animalService;
+    }
 
     @GetMapping()
     public List<Animal> getAllAnimals() {
