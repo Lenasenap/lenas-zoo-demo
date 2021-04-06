@@ -69,17 +69,4 @@ public class AnimalService {
         return new Animal(animalDTO.getId(), animalDTO.getType(), animalDTO.getName());
     }
 
-    public Animal updateAnimal(Animal newAnimal, Integer id) {
-        Animal animalToUpdate = getAnimalById(id);
-
-        if (animalToUpdate != null) {
-            animalToUpdate.setName(newAnimal.getName());
-            animalToUpdate.setType(newAnimal.getType());
-        } else {
-            animalToUpdate.setId(id);
-        }
-
-        AnimalDTO updatedAnimal = animalDAO.addAnimal(mapFromAnimal(animalToUpdate));
-        return mapToAnimal(updatedAnimal);
-    }
 }

@@ -48,11 +48,4 @@ public class AnimalController {
     public void deleleAllAnimals() {
         animalService.deleteAllAnimals();
     }
-
-    @PutMapping("/{id}")
-    public Animal updateAnimal(@RequestBody Animal newAnimal,
-                               @PathVariable("id") Integer id) {
-
-        return animalService.updateAnimal(newAnimal, id);
-    }
 }

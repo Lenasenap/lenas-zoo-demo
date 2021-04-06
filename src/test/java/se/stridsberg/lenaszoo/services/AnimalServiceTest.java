@@ -107,8 +107,5 @@ class AnimalServiceTest {
         Animal actualAnimal = animalService.updateAnimal(newAnimal, 1);
 
         Assertions.assertThat(actualAnimal.getName()).isEqualTo(newAnimal.getName());
-    void deleteAnimal() {
-        animalService.deleteAnimal(1);
-        Mockito.verify(animalDAO, Mockito.times(1)).deleteAnimal(1);
     }
 }
