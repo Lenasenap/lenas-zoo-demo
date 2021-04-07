@@ -3,6 +3,14 @@ h1 {
     color: brown;
 }
 
-.animals {
-    background-color: blueviolet;
+table tr .edit {
+    display: none;
+}
+
+table tr.edit .edit {
+    display: initial;
+}
+
+table tr.edit .noEdit {
+    display: none;
 }
