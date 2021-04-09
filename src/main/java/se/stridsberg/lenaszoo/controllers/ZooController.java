@@ -49,7 +49,7 @@ public class ZooController {
 
     @RequestMapping("visitors")
     public String showVisitors(Model model) {
-        model.addAttribute("visitors", visitorService.getVisitors());
+        model.addAttribute("visitors", visitorService.getAllVisitors());
         return "visitors";
     }
 }

@@ -13,6 +13,7 @@ public class AnimalController {
 
     final AnimalService animalService;
 
+    @Autowired
     public AnimalController(AnimalService animalService) {
         this.animalService = animalService;
     }

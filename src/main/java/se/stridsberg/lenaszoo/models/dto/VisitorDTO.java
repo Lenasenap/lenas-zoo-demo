@@ -1,23 +1,25 @@
-package se.stridsberg.lenaszoo.models;
+package se.stridsberg.lenaszoo.models.dto;
 
-public class Visitor {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "visitors")
+public class VisitorDTO {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     private String name;
     private int age;
 
-    public Visitor(Integer id, String name, int age) {
+    public VisitorDTO(Integer id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public VisitorDTO() {
     }
 
     public String getName() {
@@ -34,5 +36,13 @@ public class Visitor {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

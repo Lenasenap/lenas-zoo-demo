@@ -11,9 +11,10 @@ public class Animal {
     private String name;
 
     // TODO Undersök @JsonProperty - bara för att skriva till java eller också tvärtom?
-    public Animal(@JsonProperty("id") Integer id,
-                  @JsonProperty("type") String type,
-                  @JsonProperty("name") String name) {
+    // Behöver vi ens den här annotationen?
+    public Animal(Integer id,
+                  String type,
+                  String name) {
         this.id = id;
         this.type = type;
         this.name = name;
