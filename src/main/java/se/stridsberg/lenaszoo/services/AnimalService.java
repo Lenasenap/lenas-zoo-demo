@@ -8,6 +8,7 @@ import se.stridsberg.lenaszoo.models.dto.AnimalDTO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class AnimalService {
@@ -46,11 +47,18 @@ public class AnimalService {
         return mapToAnimal(newAnimalDTO);
     }
 
+    /** Vi skriver läsbar kod och fångar ett exception **/
     public Animal getAnimalById(Integer id) {
-        if (animalDAO.findAnimalByID(id).isPresent()) {
+        try {
+            return mapToAnimal(animalDAO.findAnimalByID(id).get());
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+
+        /*if (animalDAO.findAnimalByID(id).isPresent()) {
             return mapToAnimal(animalDAO.findAnimalByID(id).get());
         }
-        return null;
+        return null;*/
     }
 
     public void deleteAnimal(Integer id) {
